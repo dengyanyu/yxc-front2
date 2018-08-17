@@ -1,0 +1,22 @@
+{
+	"code":1,
+	"msg":"操作成功",
+	"data":{ 
+		"pagesize":10,
+		"cpage":1,
+		"pagecount":10,
+		"totalsize":99,
+		"list":[
+			{
+				"id":1,
+				"name":"出国旅游",
+				"img":"../static/img/Tulips.jpg"
+			},
+			{
+				"id":2,
+				"name":"自拍",
+				"img":"../static/img/Tulips.jpg"
+			}
+		]
+	}
+}

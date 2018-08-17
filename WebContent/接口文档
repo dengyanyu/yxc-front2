@@ -1,0 +1,52 @@
+公共说明
+	基础变量 ：	
+		host=http:127.0.0.1:8080
+	通用返回码说明：
+		code ：-2 服务器出现错误 -1 需要登陆 1 操作成功 2 访问次数受限制 
+
+1 登陆 
+	url:{{host}}/login
+	method:post
+	params:
+		un:用户名
+		pwd:密码
+	return:
+		{
+			code:1,//返回码 详见公共说明通用返回码
+			msg:"操作成功",//返回信息
+			data:{//真实对象
+				flag:"true"
+			}
+		}
+2 注册
+	
+3 相册列表分页接口
+	url:{{host}}/album/myList/{cpage}
+	method:get
+	params:
+		{cpage}:当前页
+	return:
+		{
+			code:1,//返回码 详见公共说明通用返回码
+			msg:"操作成功",//返回信息
+			data:{//真实对象
+				pagesize:10,
+				cpage:1,
+				pagecount:10,
+				totalsize:99,
+				list:[
+					{
+						id:1,
+						name:"出国旅游",
+						img:"../static/img/Tulips.jpg"
+					},
+					{
+						id:2,
+						name:"自拍",
+						img:"../static/img/Tulips.jpg"
+					}
+				]
+			}
+		}
+
+4 新建相册

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>相册管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body  ng-app="app1" ng-controller="album" class="container text-center" >
+	<div class="header row">
+		<div class="header-left col-xs-3"></div>
+		<div class="header-mid col-xs-6 text-center">相册管理</div>
+		<div class="header-right col-xs-3 text-right">
+			<a class="btn btn-success btn-xs" href="addAlbum.html">新建相册</a>
+		</div>
+	</div>
+	<div class="main row">
+	
+		<div class="album-one col-xs-12  col-md-6" ng-repeat="a in pagelist">   
+			<a href="album.html"> <img src="{{a.img}}"> <span>{{a.name}}</span> </a>
+		 </div>
+		
+		<div><a href="javascript:void(0);" ng-click="getPage(cp+1)">加载更多</a></div>
+	</div>
+	
+	
+	<div class="footer row text-center">
+		<div class="footer-item col-xs-3 icon-selected">
+			<i class="icon-mid iconfont ">&#xe60a;</i>
+			<div>相册</div>
+		</div>
+		<div class="footer-item col-xs-3 ">
+			<i class="icon-mid iconfont">&#xe605;</i>
+			<div>发现</div>
+		</div>
+		<div class="footer-item col-xs-3">
+			<i class="icon-mid iconfont">&#xe644;</i>
+			<div>我的</div>
+		</div>
+		<div class="footer-item col-xs-3">
+			<i class="icon-mid iconfont">&#xe613;</i>
+			<div>收藏</div>
+		</div>
+	</div>
+</body>
+
+<link rel="stylesheet" href="../static/css/app.css">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+	var host="../data";
+	var app = angular.module('app1', []);
+	app.controller('album', function($scope,$http) {
+		$scope.cp=1;
+		$scope.pagelist=[];//所有的数据
+		$scope.getPage=function(p){
+			$http({
+			    method: 'GET',
+			    url: host+'/album/mylist'
+			}).then(function successCallback(resp) {
+				$scope.page=resp.data.data;
+				$scope.pagelist=$scope.pagelist.concat($scope.page.list);
+			    }, function errorCallback(response) {
+			        // 请求失败执行代码
+			});
+			
+		}
+		
+		
+		$scope.getPage($scope.cp);//初始化
+		
+	});
+</script>
+
+</html>
